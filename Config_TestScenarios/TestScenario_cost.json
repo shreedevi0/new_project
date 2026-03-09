@@ -1,0 +1,34 @@
+{
+  "tc_01_Source table & Target tables":
+  {
+    "s_file_type": "csv",
+    "s_file_path": "C:\\Users\\Dell\\PycharmProjects\\PythonProject\\PythonProject\\etl_practice\\Source_Files\\cost.csv",
+    "t_table": "cost_dim"
+  },
+
+  "tc_02_Source & Target count validation":
+  {
+
+    "t_count": "select count(*) from cost_dim"
+  },
+
+  "tc_03_Null value validation":
+  {
+    "Null_cnt": "select count(pid) from cost_dim where pid is null or price is null or sales is null",
+    "C":"select pid from cost_dim where pid is null or price is null or sales is null"
+  },
+
+  "tc_04_Verification of duplicate records in target":
+  {
+    "duplicate_cnt": "select count(pid) from cost_dim group by pid having count(pid)>1",
+    "duplicate_rcd": "select pid, count(pid) from cost_dim group by pid having count(pid)>1"
+
+  },
+
+  "tc_05_Verification of source & Target column mapping":
+  {
+  "s_table": "select pid, round(price) as price, sales_date from cost",
+  "t_table": "select pid, price,sales_date from cost_dim"
+   }
+
+}

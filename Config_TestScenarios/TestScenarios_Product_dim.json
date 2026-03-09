@@ -1,0 +1,34 @@
+{
+  "tc_01_source & target tables":
+  {
+    "s_table": "product",
+    "t_table": "product_dim"
+  },
+
+  "tc_02_Verifying count of Source & Target table":
+  {
+    "S_count": "select count(*) from product",
+    "T_count":"select count(*) from product_dim"
+
+  },
+
+  "tc+03_Verifying Null value in target table":
+  {
+    "target_null_count":"select count(*) from product_dim where pid is null or sales is null",
+    "target_null_records": "select pid from product_dim where pid is null or sales is null"
+
+  },
+
+  "tc_04_Verifying duplicate in atrget table":
+  {
+    "t_dupl":"select count(pid) from product_dim group by pid having count(pid)>1",
+    "t_dupl_records": "select pid from product_dim group by pid having count(pid)>1"
+
+  },
+
+  "tc_05_Verifying column mapping for source & target tables":
+  {
+    "source": "select pid, sales from product",
+    "target": "select pid, sales from product_dim"
+  }
+}
